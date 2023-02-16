@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RoundAboutMVC.Models;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Reflection;
 
 namespace RoundAboutMVC.Controllers
 {
@@ -28,10 +26,52 @@ namespace RoundAboutMVC.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult FBPage()
         {
-            return View();
+            RoundAbout model = new();
+            model.RoundValue = 3;
+            model.AboutValue = 5;
+
+            return View(model);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult FBPage(RoundAbout roundAbout)
+        {
+            List<string> raItems = new();
+            bool round;
+            bool about;
+
+            for (int i = 1; i <= 100; i++)
+            {
+                round = (i % roundAbout.RoundValue == 0);
+                about = (i % roundAbout.AboutValue == 0);
+
+                if (round == true && about == true)
+                {
+                    raItems.Add("RoundAbout");
+                }
+                else if (round == true)
+                {
+                    raItems.Add("Round");
+                }
+                else if (about == true)
+                {
+                    raItems.Add("About");
+                }
+                else
+                {
+                    raItems.Add(i.ToString());
+                }
+            }
+
+            roundAbout.Result= raItems;
+
+            return View(roundAbout);
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
