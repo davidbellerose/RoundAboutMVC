@@ -21,6 +21,11 @@ namespace RoundAboutMVC.Controllers
             return View();
         }
 
+        public IActionResult Code()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
@@ -32,6 +37,10 @@ namespace RoundAboutMVC.Controllers
             RoundAbout model = new();
             model.RoundValue = 3;
             model.AboutValue = 5;
+            model.StartValue = 1;
+            model.EndValue = 100;
+            model.FirstWord = "Round";
+            model.LastWord = "About";
 
             return View(model);
         }
@@ -44,22 +53,22 @@ namespace RoundAboutMVC.Controllers
             bool round;
             bool about;
 
-            for (int i = 1; i <= 100; i++)
+            for (int i = roundAbout.StartValue; i <= roundAbout.EndValue; i++)
             {
                 round = (i % roundAbout.RoundValue == 0);
                 about = (i % roundAbout.AboutValue == 0);
 
                 if (round == true && about == true)
                 {
-                    raItems.Add("RoundAbout");
+                    raItems.Add($"{ roundAbout.FirstWord}{roundAbout.LastWord}");
                 }
                 else if (round == true)
                 {
-                    raItems.Add("Round");
+                    raItems.Add(roundAbout.FirstWord);
                 }
                 else if (about == true)
                 {
-                    raItems.Add("About");
+                    raItems.Add(roundAbout.LastWord);
                 }
                 else
                 {

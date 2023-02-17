@@ -1,0 +1,170 @@
+﻿
+<main class="flex-shrink-0 mt-5">
+    <div class="container py-4 px-5 mt-5">
+        <h2 class="border-1 border-bottom border-dark">The Code for TATTARRATTAT in C# .NET</h2>
+        <div class="row row-cols-1 row-cols-lg-2">
+            <div class="col-lg-8">
+                <h4 class="mt-4 pt-4">The Model</h4>
+                <pre class="line-numbers">
+                <code class="language-javascript">
+  namespace RoundAboutMVC.Models
+{
+    public class RoundAbout
+    {
+        public int RoundValue { get; set; }
+        public int AboutValue { get; set; }
+        public int StartValue { get; set; }
+        public int EndValue { get; set; }
+        public string FirstWord { get; set; }
+        public string LastWord { get; set; }
+
+        public List&#60;string> Result { get; set; } = new();
+    }
+}
+
+                </code>
+            </pre>
+<h4 class="mt-4 pt-4">The View</h4>
+<pre class="line-numbers">
+<code class="language-javascript">
+
+&#60;form asp-controller="Home" id="raForm" asp-action="FBPage" method="post" class="row row-cols-1 row-cols-lg-2 gy-2 gx-3">
+&#60;div class="col">
+&#60;label>Enter the starting number.&#60;/label>
+&#60;input id="startValue" asp-for="StartValue" min="1" max="100" type="number" class="form-control" placeholder="Start Value" value="&#64;Model.StartValue" aria- label="Start Value">
+&#60;/div>
+&#60;div class="col">
+&#60;label>Enter the ending number.&#60;/label>
+&#60;input id="endValue" asp-for="EndValue" min="1" max="100" type="number" class="form-control" placeholder="Start Value" value="&#64;Model.EndValue" aria- label="End Value">
+&#60;/div>
+&#60;div class="col">
+&#60;label>Enter the first word.&#60;/label>
+&#60;input id="firstWord" asp-for="FirstWord" type="text" class="form-control" placeholder="First Word" value="&#64;Model.FirstWord" aria- label="First Word">
+&#60;/div>
+&#60;div class="col">
+&#60;label>Enter the second word.&#60;/label>
+&#60;input id="secondWord" asp-for="LastWord" type="text" class="form-control" placeholder="Second Word" value="&#64;Model.LastWord" aria- label="Second Word">
+&#60;/div>
+&#60;div class="col">
+&#60;label>Enter the multiple(number) you want replaced by the first word.&#60;/label>
+&#60;input id="roundValue" asp-for="RoundValue" type="number" class="form-control" placeholder="Round Value" value="&#64;Model.RoundValue" aria- label="Round Value">
+&#60;/div>
+&#60;div class="col">
+&#60;label>Enter the multiple(number) you want replaced by the second word.&#60;/label>
+&#60;input id="roundValue" asp-for="AboutValue" type="number" class="form-control" placeholder="Round Value" value="&#64;Model.AboutValue" aria- label="Round Value">
+&#60;/div>
+&#60;div class="input-group col-12 col-lg-12 d-flex justify-content-start justify-content-lg-end">
+&#60;div class="input-group-append">
+&#60;button type="submit" id="btnSubmit" class="btn btn-dark btn-lg">Display RoundAbout&#60;/button>
+    &#60;/div>
+&#60;/div>
+&#60;/form>
+&#60;h2 class="mt-5 border-bottom border-2">Results&#60;/h2>
+&#60;table class="table table-striped table-sm">
+&#60;tbody id="results">
+    &#60;!-- results go here -->
+                &#64;if (&#64;Model.Result.Count > 0)
+                {
+    &#60;table class="table table-striped table-hover table-dark">
+    &#60;thead>&#60;tr>&#60;th class="colspan=5">Results&#60;/th>&#60;/tr>&#60;/thead>
+    &#60;tbody>
+                            &#64;for (int i = 0; i &#60; Model.Result.Count(); i++)
+                            {
+        &#60;tr>&#60;td>&#64;Model.Result[i]&#60;/td>&#60;/tr>
+                            }
+                &#60;/tbody>
+            &#60;/table>   
+                }
+&#60;/tbody>
+&#60;/table>
+                </code>
+            </pre>
+                <h4 class="mt-4 pt-4">The Controller</h4>
+                <pre class="line-numbers">
+                <code class="language-javascript">
+[HttpGet]
+public IActionResult FBPage()
+{
+    RoundAbout model = new();
+    model.RoundValue = 3;
+    model.AboutValue = 5;
+    model.StartValue = 1;
+    model.EndValue = 100;
+    model.FirstWord = "Round";
+    model.LastWord = "About";
+
+    return View(model);
+}
+
+[HttpPost]
+[ValidateAntiForgeryToken]
+public IActionResult FBPage(RoundAbout roundAbout)
+{
+    List&#60;string> raItems = new();
+    bool round;
+    bool about;
+
+    &#102;or (int i = roundAbout.StartValue; i &#60;= roundAbout.EndValue; i++)
+    {
+        round = (i % roundAbout.RoundValue == 0);
+        about = (i % roundAbout.AboutValue == 0);
+
+        i&#102; (round == true && about == true)
+        {
+            raItems.Add($"{ roundAbout.&#102;irstWord}{roundAbout.LastWord}");
+        }
+        else i&#102; (round == true)
+        {
+            raItems.Add(roundAbout.&#102;irstWord);
+        }
+        else i&#102; (about == true)
+        {
+            raItems.Add(roundAbout.LastWord);
+        }
+        &#101;lse
+        {
+            raItems.Add(i.ToString());
+        }
+    }
+
+    roundAbout.Result= raItems;
+
+    return View(roundAbout);
+}
+
+                </code>
+            </pre>
+            </div>
+            <div class="col-lg-4">
+                <h4 class="mt-4 pt-4">This code is structured using the MVC model.</h4>
+                <h5 class="mt-4 pt-4">The Model</h5>
+                <p>
+                    The model represents the database. It defines the database table as well
+                    as the columns. The perameters are set in the class, and translated
+                    into SQL on the server side.
+                </p>
+                <h5 class="mt-4 pt-4">The View</h5>
+                <p>
+                    The view is a web page that displays the data and is the interface
+                    between the user and the applicaiton. It uses a combination of HTML,
+                    CSS, Javasctipt and C# to display the web page.
+                </p>
+                <h5 class="mt-4 pt-4">The Controller</h5>
+                <p>
+                    When the view, or web page is interacted with by the user, the controller
+                    is consulted to determine the action to be taken. In this case, the user
+                    enters data in a form, and when the button is clicked, the controller
+                    executes the appropriate action determined by the code. It communicates between
+                    the model and the view. The controller also exectues any commands on the
+                    back end database as dictated by the code. In this example, the controller recieves
+                    the data entered in the form, executes the function to process the data
+                    entered, communicates with the database to make the designated changes,
+                    then sends the result back to the view and displays it.
+                </p>
+            <h5>Please <a href="https://davidbellerose.com/#contact" target="_blank" alt="Contact Me">contact me</a> if you have any questions and/or would like to discuss
+                my skill set and qualifications.
+            </h5>
+            </div>
+        </div>
+    </div>
+</main>
