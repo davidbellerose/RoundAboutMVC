@@ -1,6 +1,6 @@
 @use 'colors';
 @use '_footer';
-@use 'prism';
+@use '_prism';
 
 
 body{
@@ -21,8 +21,8 @@ main .container {
   margin-bottom: 5rem;
 }
 
-.checklist>li i{
-   color: var(--secondary-color);
+.checklist > li i {
+    color: #3c284a;
 }
 
 .project-icons img{

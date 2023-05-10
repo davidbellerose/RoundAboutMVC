@@ -26,11 +26,6 @@ namespace RoundAboutMVC.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         [HttpGet]
         public IActionResult FBPage()
         {
