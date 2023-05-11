@@ -1,11 +1,34 @@
-﻿# RoundAbout
+# RoundAbout
 
-## An ASP.NET C# FizzBuzz App
+## A customizable ASP.NET C# version of the infamous FizzBuzz algorithm.
 
-- HTML
-- CSS
-- Bootstrap
-- C#
-- ASP.NET
-- MVC
-- Entity Framework
+    - CSS SASS Bootstrap Layout
+    - ASP.NET MVC
+    - Entity Framework
+    - C# Fundamentals
+    - C# Loops
+    - C# Functions
+    - C# Dom Manipulation
+    - C# If/Then/Else
+    - C# Boolean Logic
+ 
+
+<span><img src="https://davidbellerose.com/assets/img/html5-badge.webp" alt="alt text" title="image Title" height="35" />
+<img src="https://davidbellerose.com/assets/img/css3-badge.webp" alt="alt text" title="image Title" height="35" />
+<img src="https://davidbellerose.com/assets/img/bootstrap-badge.webp" alt="alt text" title="image Title" height="35" />
+<img src="https://davidbellerose.com/assets/img/sass-badge.webp" alt="alt text" title="image Title" height="35" />
+<img src="https://davidbellerose.com/assets/img/c-sharp-badge.webp" alt="alt text" title="image Title" height="35" />
+<img src="https://davidbellerose.com/assets/img/net-core-badge.webp" alt="alt text" title="image Title" height="35" />
+<img src="https://davidbellerose.com/assets/img/visual-studio-badge.webp" alt="alt text" title="image Title" height="35" />
+<img src="https://davidbellerose.com/assets/img/gimp-badge.webp" alt="alt text" title="image Title" height="35" />
+<img src="https://davidbellerose.com/assets/img/inkscape-badge.webp" alt="alt text" title="image Title" height="35" />
+<img src="https://davidbellerose.com/assets/img/blender-badge.webp" alt="alt text" title="image Title" height="35" />
+<img src="https://davidbellerose.com/assets/img/codepen-badge.webp" alt="alt text" title="image Title" height="35" />
+<img src="https://davidbellerose.com/assets/img/railway-badge.webp" alt="alt text" title="image Title" height="35" />
+<img src="https://davidbellerose.com/assets/img/terminal-badge.webp" alt="alt text" title="image Title" height="35" /></span>
+
+
+ 
+ [Go To Website](https://roundabout-asp-net.up.railway.app/)
+
+ [Go To Javascript Version](https://roundabout-javascript.netlify.app/)
